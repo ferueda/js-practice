@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Traffic Light</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .traffic_light {
+        border: 2px solid black;
+        width: 100px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+
+      .light {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 50%;
+        transition: all 0.5s;
+      }
+
+      .light-red {
+        background-color: red;
+        opacity: 0.2;
+      }
+
+      .light-yellow {
+        background-color: orange;
+        opacity: 0.2;
+      }
+
+      .light-green {
+        background-color: green;
+        opacity: 0.2;
+      }
+
+      .post {
+        width: 30px;
+        height: 400px;
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="traffic_light">
+      <div class="light light-red"></div>
+      <div class="light light-yellow"></div>
+      <div class="light light-green"></div>
+    </div>
+    <div class="post"></div>
+
+    <script>
+      const redLight = document.querySelector(".light-red");
+      const yellowLight = document.querySelector(".light-yellow");
+      const greenLight = document.querySelector(".light-green");
+      const lights = [...document.querySelectorAll(".light")];
+
+      function activateGreenLight() {
+        turnOffLights();
+        greenLight.style.opacity = 1;
+      }
+
+      function activateRedLight() {
+        turnOffLights();
+        redLight.style.opacity = 1;
+      }
+
+      function turnOffLights() {
+        lights.forEach(light => (light.style.opacity = 0.2));
+      }
+
+      function switchLights() {
+        if (redLight.style.opacity == 1) {
+          turnOffLights();
+          yellowLight.style.opacity = 1;
+          setTimeout(activateGreenLight, 1000);
+        } else if (greenLight.style.opacity == 1) {
+          turnOffLights();
+          yellowLight.style.opacity = 1;
+          setTimeout(activateRedLight, 1000);
+        }
+      }
+
+      (function() {
+        redLight.style.opacity = 1;
+      })();
+      setInterval(switchLights, 5000);
+    </script>
+  </body>
+</html>
