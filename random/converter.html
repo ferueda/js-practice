@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Miles/Kilometers Converter</title>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <style>
+      .main-container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .input-container {
+        display: flex;
+        justify-content: space-evenly;
+        width: 400px;
+      }
+
+      .convert-icon {
+        font-size: 45px;
+        margin: 0 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>Miles/Kilometers Converter</h1>
+      <div class="input-container">
+        <div class="miles-container">
+          <label for="miles">Miles</label>
+          <input type="number" id="miles" name="miles" value=""/>
+        </div> 
+        <ion-icon class="convert-icon" name="swap"></ion-icon>
+        <div class="km-container">
+          <label for "km">KMs</label>
+          <input type="number" id="km" name="km" disabled />
+        </div>
+      </div>
+    </div>
+    <script>
+      const miles = document.querySelector("input[name=miles]");
+      const km = document.querySelector("input[name=km]");
+      
+      function convertMiles() {
+        km.value = (miles.value * 1.60934).toFixed(2);;
+      }
+
+      function convertKm() {
+        miles.value = (km.value * 0.621371).toFixed(2);;
+      }
+
+      miles.addEventListener("keyup", convertMiles);
+      km.addEventListener("keyup", convertKm);
+
+      const arrow = document.querySelector(".convert-icon");
+
+
+      function switchMeasure() {
+        if (arrow.style.transform == "rotate(180deg)") 
+        arrow.style.transform = "rotate(0deg)";
+        else arrow.style.transform = "rotate(180deg)";
+
+        if (miles.disabled == false) {
+          miles.value = "";
+          km.value = "";
+          miles.disabled = true;
+          km.disabled = false;
+        }
+        else {
+          miles.value = "";
+          km.value = "";
+          miles.disabled = false;
+          km.disabled = true;
+        }
+      }
+
+      arrow.addEventListener("click", switchMeasure);
+    </script>
+  </body>
+</html>
