@@ -1,0 +1,148 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+.main-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: auto auto;
+}
+
+.main-calc {
+  background: lightblue;
+}
+
+.calc-visor {
+  width: 90%;
+  height: 40px;
+  margin: auto auto;
+  margin: 5px;
+}
+
+.calc-btns-container {
+  margin: 5px;
+}
+
+.btns {
+  display: grid;
+  grid-template-columns: repeat(4, 50px);
+  grid-template-rows: repeat(5, 50px);
+  grid-gap: 5px;
+  grid-template-areas:
+    "number number number other"
+    "number number number other"
+    "number number number other"
+    ". number . ."
+    "equal equal equal equal";
+}
+
+.btn {
+  border: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn:hover {
+  background: lightcoral;
+}
+
+.btn-icon {
+  font-size: 30px;
+}
+
+.equal {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+
+.btn-1 {
+  grid-area: number;
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+.btn-2 {
+  grid-area: number;
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+.btn-3 {
+  grid-area: number;
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+.btn-4 {
+  grid-area: number;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+.btn-5 {
+  grid-area: number;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+.btn-6 {
+  grid-area: number;
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
