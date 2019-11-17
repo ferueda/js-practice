@@ -79,7 +79,6 @@ select {
   height: 40px;
   margin: auto auto;
   appearance: none;
-  direction: rtl;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
