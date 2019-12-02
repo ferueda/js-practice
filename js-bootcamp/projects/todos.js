@@ -38,3 +38,12 @@ const addTodo = function(notes, name, status) {
   };
   return notes.push(newTodo);
 };
+
+const filterByStatus = function(notes, status) {
+  return notes.filter(note => note.completed === status);
+};
+
+const filterByName = function(notes, text) {
+  const regex = new RegExp(text, 'gi');
+  return notes.filter(note => regex.test(note.name));
+};
