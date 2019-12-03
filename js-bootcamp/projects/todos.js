@@ -47,3 +47,14 @@ const filterByName = function(notes, text) {
   const regex = new RegExp(text, 'gi');
   return notes.filter(note => regex.test(note.name));
 };
+
+const sortByStatus = function(notes, status) {
+  notes.sort((a, b) => {
+    if (!a.completed && b.completed) return -1;
+    else if (!b.completed && a.completed) return 1;
+    else if (a.completed && b.completed) return 0;
+  });
+  return status ? notes.reverse() : notes;
+};
+
+console.log(sortByStatus(todo, true));
