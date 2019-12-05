@@ -13,7 +13,8 @@ const notes = [
   }
 ];
 
-const btn = document.querySelector('button');
-btn.addEventListener('click', function(e) {
-  console.log(e);
+document.querySelector('#notes-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  console.log(e.target.elements['note-input'].value);
+  e.target.elements['note-input'].value = '';
 });
