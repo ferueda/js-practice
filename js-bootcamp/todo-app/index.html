@@ -8,10 +8,11 @@
   </head>
   <body>
     <h1>Todos</h1>
-    <input id="add-todo-input" type="text" placeholder="Add a new todo" />
-    <button id="add-todo-btn" type="submit">Add Todo</button>
-    <button id="remove-todo-btn">Remove Todo</button>
-    <input style="display: block; margin-top: 5px;" id="search-todo-input" type="text" placeholder="Search todos" />
+    <input style="display: block; margin-bottom: 5px;" id="search-todo-input" type="text" placeholder="Search todos" />
+    <form id="add-todo-form">
+      <input type="text" name="add-todo-input" placeholder="Add a todo" />
+      <button type="submit" name="add-todo-btn">Create Todo</button>
+    </form>
     <div id="todos-container"></div>
     <script src="scripts.js"></script>
   </body>
