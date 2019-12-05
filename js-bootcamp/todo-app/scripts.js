@@ -32,7 +32,7 @@ const filters = {
 
 //render todos
 const displayTodos = function(todos, filter) {
-  const filteredNotes = todos.filter(todo => {
+  const filteredTodos = todos.filter(todo => {
     const matchText = todo.name.toLowerCase().includes(filter.searchText.toLowerCase());
     const matchHidden = !filters.hideCompleted || !todo.completed;
 
@@ -42,10 +42,10 @@ const displayTodos = function(todos, filter) {
   document.querySelector('#todos-container').innerHTML = '';
 
   const todosLeft = document.createElement('h2');
-  todosLeft.textContent = `You have ${filteredNotes.length} todos left.`;
+  todosLeft.textContent = `You have ${filteredTodos.length} todos left.`;
   document.querySelector('#todos-container').appendChild(todosLeft);
 
-  filteredNotes.forEach(todo => {
+  filteredTodos.forEach(todo => {
     let p = document.createElement('p');
     p.textContent = todo.name;
     document.querySelector('#todos-container').appendChild(p);
