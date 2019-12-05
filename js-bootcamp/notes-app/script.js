@@ -13,8 +13,26 @@ const notes = [
   }
 ];
 
-document.querySelector('#notes-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  console.log(e.target.elements['note-input'].value);
-  e.target.elements['note-input'].value = '';
+const filters = {
+  searchText: ''
+};
+
+const renderNotes = function(notes, filters) {
+  const filteredNotes = notes.filter(note => note.title.includes(filters.searchText));
+  const container = document.querySelector('#notes-container');
+
+  container.innerHTML = '';
+
+  filteredNotes.forEach(note => {
+    const p = document.createElement('p');
+    p.textContent = note.title;
+    container.appendChild(p);
+  });
+};
+
+document.querySelector('#search-input').addEventListener('input', function(e) {
+  filters.searchText = e.target.value;
+  renderNotes(notes, filters);
 });
+
+renderNotes(notes, filters);
