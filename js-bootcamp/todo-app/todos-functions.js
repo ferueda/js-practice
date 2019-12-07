@@ -22,7 +22,6 @@ const displayTodos = function(todos, filter) {
   const filteredTodos = todos.filter(todo => {
     const matchText = todo.name.toLowerCase().includes(filter.searchText.toLowerCase());
     const matchHidden = !filters.hideCompleted || !todo.completed;
-
     return matchText && matchHidden;
   });
 

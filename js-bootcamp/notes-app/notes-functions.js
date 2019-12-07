@@ -6,13 +6,31 @@ const getSavedNotes = function() {
   else return [];
 };
 
+// save notes to localStorage
+
+const saveNotesToLocalStorage = function() {
+  return localStorage.setItem('notes', JSON.stringify(notes));
+};
+
 // generate the DOM structure for a note
 
 const generateNote = function(note) {
-  const p = document.createElement('p');
-  if (notes.title > 0) p.textContent = note.title;
-  else p.textContent = 'No title note';
-  return p;
+  const noteContainer = document.createElement('div');
+  const p = document.createElement('span');
+  const delBtn = document.createElement('button');
+
+  // setup the note title text
+  if (note.title.length > 0) {
+    p.textContent = note.title;
+  } else p.textContent = 'No title note';
+
+  //setup the remove note btn
+  delBtn.textContent = 'x';
+
+  noteContainer.appendChild(delBtn);
+  noteContainer.appendChild(p);
+
+  return noteContainer;
 };
 
 // Render notes
