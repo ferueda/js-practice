@@ -8,8 +8,15 @@ const getSavedNotes = function() {
 
 // save notes to localStorage
 
-const saveNotesToLocalStorage = function() {
+const saveNotesToLocalStorage = function(notes) {
   return localStorage.setItem('notes', JSON.stringify(notes));
+};
+
+// remove notes
+
+const removeNote = function(id) {
+  const noteIndex = notes.findIndex(note => note.id === id);
+  if (noteIndex > -1) notes.splice(noteIndex, 1);
 };
 
 // generate the DOM structure for a note
@@ -19,15 +26,19 @@ const generateNote = function(note) {
   const p = document.createElement('span');
   const delBtn = document.createElement('button');
 
+  //setup remove note btn
+  delBtn.textContent = 'x';
+  noteContainer.appendChild(delBtn);
+  delBtn.addEventListener('click', function() {
+    removeNote(note.id);
+    saveNotesToLocalStorage(notes);
+    renderNotes(notes, filters);
+  });
+
   // setup the note title text
   if (note.title.length > 0) {
     p.textContent = note.title;
   } else p.textContent = 'No title note';
-
-  //setup the remove note btn
-  delBtn.textContent = 'x';
-
-  noteContainer.appendChild(delBtn);
   noteContainer.appendChild(p);
 
   return noteContainer;
@@ -37,6 +48,7 @@ const generateNote = function(note) {
 
 const renderNotes = function(notes, filters) {
   const filteredNotes = notes.filter(note => note.title.includes(filters.searchText));
+
   const container = document.querySelector('#notes-container');
 
   container.innerHTML = '';

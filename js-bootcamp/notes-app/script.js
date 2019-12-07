@@ -11,10 +11,11 @@ document.querySelector('#search-input').addEventListener('input', function(e) {
 
 document.querySelector('#create-note-btn').addEventListener('click', function(e) {
   notes.push({
+    id: uuidv4(),
     title: '',
     body: ''
   });
-  saveNotesToLocalStorage();
+  saveNotesToLocalStorage(notes);
   renderNotes(notes, filters);
 });
 
