@@ -12,9 +12,20 @@ const saveTodosToLocalStorage = function(todos) {
 
 // create todo DOM element
 const createTodoDomElement = function(todo) {
-  let p = document.createElement('p');
+  const todoContainer = document.createElement('div');
+  const p = document.createElement('span');
+  const checkBox = document.createElement('input');
+  const delBtn = document.createElement('button');
+
+  checkBox.setAttribute('type', 'checkbox');
   p.textContent = todo.name;
-  return p;
+  delBtn.textContent = 'x';
+
+  todoContainer.appendChild(checkBox);
+  todoContainer.appendChild(p);
+  todoContainer.appendChild(delBtn);
+
+  return todoContainer;
 };
 
 // render todos
