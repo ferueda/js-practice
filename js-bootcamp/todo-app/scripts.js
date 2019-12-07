@@ -22,6 +22,7 @@ document.querySelector('#add-todo-form').addEventListener('submit', function(e) 
   const newTodo = e.target.elements['add-todo-input'].value;
   if (newTodo) {
     todos.push({
+      id: uuidv4(),
       name: newTodo,
       completed: false
     });

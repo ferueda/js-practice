@@ -10,6 +10,18 @@ const saveTodosToLocalStorage = function(todos) {
   return localStorage.setItem('todos', JSON.stringify(todos));
 };
 
+// remove todo by id
+const removeTodo = function(id) {
+  const todoIndex = todos.findIndex(todo => todo.id === id);
+  if (todoIndex > -1) todos.splice(todoIndex, 1);
+};
+
+// toggle completed value for a given todo
+const toggleTodo = function(id) {
+  const todo = todos.find(todo => todo.id === id);
+  if (todo) todo.completed = !todo.completed;
+};
+
 // create todo DOM element
 const createTodoDomElement = function(todo) {
   const todoContainer = document.createElement('div');
@@ -17,13 +29,28 @@ const createTodoDomElement = function(todo) {
   const checkBox = document.createElement('input');
   const delBtn = document.createElement('button');
 
+  // setup checkbox
   checkBox.setAttribute('type', 'checkbox');
-  p.textContent = todo.name;
-  delBtn.textContent = 'x';
-
+  checkBox.checked = todo.completed;
   todoContainer.appendChild(checkBox);
+  checkBox.addEventListener('change', function(e) {
+    toggleTodo(todo.id);
+    saveTodosToLocalStorage(todos);
+    displayTodos(todos, filters);
+  });
+
+  // setup note element
+  p.textContent = todo.name;
   todoContainer.appendChild(p);
+
+  // setup delete todo btn
+  delBtn.textContent = 'x';
   todoContainer.appendChild(delBtn);
+  delBtn.addEventListener('click', function() {
+    removeTodo(todo.id);
+    saveTodosToLocalStorage(todos);
+    displayTodos(todos, filters);
+  });
 
   return todoContainer;
 };
@@ -48,6 +75,6 @@ const displayTodos = function(todos, filter) {
 // get DOM elements for summary list
 const generateSummaryDOM = function(todos) {
   const todosLeft = document.createElement('h2');
-  todosLeft.textContent = `You have ${todos.length} todos left.`;
+  todosLeft.textContent = `You have ${todos.filter(todo => !todo.completed).length} todos left.`;
   document.querySelector('#todos-container').appendChild(todosLeft);
 };
