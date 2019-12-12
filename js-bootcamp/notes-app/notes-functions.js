@@ -23,7 +23,7 @@ const removeNote = function(id) {
 
 const generateNote = function(note) {
   const noteContainer = document.createElement('div');
-  const p = document.createElement('span');
+  const p = document.createElement('a');
   const delBtn = document.createElement('button');
 
   //setup remove note btn
@@ -39,6 +39,7 @@ const generateNote = function(note) {
   if (note.title.length > 0) {
     p.textContent = note.title;
   } else p.textContent = 'No title note';
+  p.href = `edit.html#${note.id}`;
   noteContainer.appendChild(p);
 
   return noteContainer;
