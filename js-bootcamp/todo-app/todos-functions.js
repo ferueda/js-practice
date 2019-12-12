@@ -33,13 +33,13 @@ const createTodoDomElement = function(todo) {
   checkBox.setAttribute('type', 'checkbox');
   checkBox.checked = todo.completed;
   todoContainer.appendChild(checkBox);
-  checkBox.addEventListener('change', function(e) {
+  checkBox.addEventListener('change', function() {
     toggleTodo(todo.id);
     saveTodosToLocalStorage(todos);
     displayTodos(todos, filters);
   });
 
-  // setup note element
+  // setup todo element
   p.textContent = todo.name;
   todoContainer.appendChild(p);
 
