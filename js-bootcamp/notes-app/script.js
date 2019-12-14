@@ -1,4 +1,4 @@
-const notes = getSavedNotes();
+let notes = getSavedNotes();
 
 const filters = {
   searchText: ''
@@ -19,6 +19,13 @@ document.querySelector('#create-note-btn').addEventListener('click', function() 
   });
   saveNotesToLocalStorage(notes);
   location.assign(`edit.html#${id}`);
+});
+
+window.addEventListener('storage', function(e) {
+  if (e.key === 'notes') {
+    notes = JSON.parse(e.newValue);
+    renderNotes(notes, filters);
+  }
 });
 
 renderNotes(notes, filters);
