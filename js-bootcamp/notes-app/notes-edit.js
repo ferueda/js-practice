@@ -19,3 +19,11 @@ noteBody.addEventListener('input', function(e) {
   note.body = e.target.value;
   saveNotesToLocalStorage(notes);
 });
+
+const delBtn = document.querySelector('#remove-note');
+
+delBtn.addEventListener('click', function() {
+  removeNote(noteId);
+  saveNotesToLocalStorage(notes);
+  location.assign('index.html');
+});
