@@ -17,5 +17,5 @@ noteTitle.addEventListener('input', function(e) {
 
 noteBody.addEventListener('input', function(e) {
   note.body = e.target.value;
-  saveNotesToLocalStorage();
+  saveNotesToLocalStorage(notes);
 });

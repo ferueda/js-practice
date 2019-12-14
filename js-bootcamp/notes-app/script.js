@@ -9,7 +9,7 @@ document.querySelector('#search-input').addEventListener('input', function(e) {
   renderNotes(notes, filters);
 });
 
-document.querySelector('#create-note-btn').addEventListener('click', function(e) {
+document.querySelector('#create-note-btn').addEventListener('click', function() {
   const id = uuidv4();
 
   notes.push({
