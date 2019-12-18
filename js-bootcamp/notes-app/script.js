@@ -1,7 +1,8 @@
 let notes = getSavedNotes();
 
 const filters = {
-  searchText: ''
+  searchText: '',
+  sortBy: 'By last edited'
 };
 
 document.querySelector('#search-input').addEventListener('input', function(e) {
@@ -22,6 +23,11 @@ document.querySelector('#create-note-btn').addEventListener('click', function() 
   });
   saveNotesToLocalStorage(notes);
   location.assign(`edit.html#${id}`);
+});
+
+document.querySelector('#sort-notes').addEventListener('change', function(e) {
+  filters.sortBy = e.target.value;
+  renderNotes(notes, filters);
 });
 
 window.addEventListener('storage', function(e) {

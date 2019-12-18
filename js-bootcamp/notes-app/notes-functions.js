@@ -51,11 +51,27 @@ const generateNote = function(note) {
   return noteContainer;
 };
 
+// sort notes
+
+const sortNotes = function(notes, sortBy) {
+  if (sortBy === 'By last edited') {
+    return notes.sort((a, b) => b.updatedAt - a.updatedAt);
+  } else if (sortBy === 'By created') {
+    return notes.sort((a, b) => b.createdAt - a.createdAt);
+  } else if (sortBy === 'By name') {
+    return notes.sort((a, b) => {
+      if (a.title.toUpperCase() < b.title.toUpperCase()) return -1;
+      else if (a.title.toUpperCase() > b.title.toUpperCase()) return 1;
+      else return 0;
+    });
+  }
+};
+
 // Render notes
 
 const renderNotes = function(notes, filters) {
+  notes = sortNotes(notes, filters.sortBy);
   const filteredNotes = notes.filter(note => note.title.includes(filters.searchText));
-
   const container = document.querySelector('#notes-container');
 
   container.innerHTML = '';
