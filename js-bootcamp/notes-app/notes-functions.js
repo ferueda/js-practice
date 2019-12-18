@@ -25,6 +25,7 @@ const generateNote = function(note) {
   const noteContainer = document.createElement('div');
   const p = document.createElement('a');
   const delBtn = document.createElement('button');
+  const date = document.createElement('span');
 
   //setup remove note btn
   delBtn.textContent = 'x';
@@ -42,6 +43,11 @@ const generateNote = function(note) {
   p.href = `edit.html#${note.id}`;
   noteContainer.appendChild(p);
 
+  // setup the note's date
+
+  date.textContent = generateLastEdited(note.updatedAt);
+  noteContainer.appendChild(date);
+
   return noteContainer;
 };
 
@@ -57,4 +63,10 @@ const renderNotes = function(notes, filters) {
   filteredNotes.forEach(note => {
     container.appendChild(generateNote(note));
   });
+};
+
+// updates edited date
+
+const generateLastEdited = function(timestamp) {
+  return `Last edited ${moment(timestamp).fromNow()}`;
 };

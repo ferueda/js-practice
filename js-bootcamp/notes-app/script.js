@@ -11,11 +11,14 @@ document.querySelector('#search-input').addEventListener('input', function(e) {
 
 document.querySelector('#create-note-btn').addEventListener('click', function() {
   const id = uuidv4();
+  const timestamp = moment().valueOf();
 
   notes.push({
     id: id,
     title: '',
-    body: ''
+    body: '',
+    createdAt: timestamp,
+    updatedAt: timestamp
   });
   saveNotesToLocalStorage(notes);
   location.assign(`edit.html#${id}`);
