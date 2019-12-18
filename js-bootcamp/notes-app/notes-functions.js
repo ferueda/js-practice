@@ -54,11 +54,11 @@ const generateNote = function(note) {
 // sort notes
 
 const sortNotes = function(notes, sortBy) {
-  if (sortBy === 'By last edited') {
+  if (sortBy === 'byEdited') {
     return notes.sort((a, b) => b.updatedAt - a.updatedAt);
-  } else if (sortBy === 'By created') {
+  } else if (sortBy === 'byCreated') {
     return notes.sort((a, b) => b.createdAt - a.createdAt);
-  } else if (sortBy === 'By name') {
+  } else if (sortBy === 'byName') {
     return notes.sort((a, b) => {
       if (a.title.toUpperCase() < b.title.toUpperCase()) return -1;
       else if (a.title.toUpperCase() > b.title.toUpperCase()) return 1;

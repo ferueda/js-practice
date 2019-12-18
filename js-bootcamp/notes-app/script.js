@@ -2,7 +2,7 @@ let notes = getSavedNotes();
 
 const filters = {
   searchText: '',
-  sortBy: 'By last edited'
+  sortBy: 'byEdited'
 };
 
 document.querySelector('#search-input').addEventListener('input', function(e) {
