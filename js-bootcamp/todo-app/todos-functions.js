@@ -33,7 +33,7 @@ const createTodoDomElement = function(todo) {
   checkBox.setAttribute('type', 'checkbox');
   checkBox.checked = todo.completed;
   todoContainer.appendChild(checkBox);
-  checkBox.addEventListener('change', function() {
+  checkBox.addEventListener('change', () => {
     toggleTodo(todo.id);
     saveTodosToLocalStorage(todos);
     displayTodos(todos, filters);
@@ -46,7 +46,7 @@ const createTodoDomElement = function(todo) {
   // setup delete todo btn
   delBtn.textContent = 'x';
   todoContainer.appendChild(delBtn);
-  delBtn.addEventListener('click', function() {
+  delBtn.addEventListener('click', () => {
     removeTodo(todo.id);
     saveTodosToLocalStorage(todos);
     displayTodos(todos, filters);
@@ -67,9 +67,7 @@ const displayTodos = function(todos, filter) {
 
   generateSummaryDOM(filteredTodos);
 
-  filteredTodos.forEach(todo => {
-    document.querySelector('#todos-container').appendChild(createTodoDomElement(todo));
-  });
+  filteredTodos.forEach(todo => document.querySelector('#todos-container').appendChild(createTodoDomElement(todo)));
 };
 
 // get DOM elements for summary list
