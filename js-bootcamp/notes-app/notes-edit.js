@@ -13,14 +13,14 @@ noteTitle.value = note.title;
 noteBody.value = note.body;
 lastEdited.textContent = generateLastEdited(note.updatedAt);
 
-noteTitle.addEventListener('input', function(e) {
+noteTitle.addEventListener('input', e => {
   note.title = e.target.value;
   note.updatedAt = moment().valueOf();
   lastEdited.textContent = generateLastEdited(note.updatedAt);
   saveNotesToLocalStorage(notes);
 });
 
-noteBody.addEventListener('input', function(e) {
+noteBody.addEventListener('input', e => {
   note.body = e.target.value;
   note.updatedAt = moment().valueOf();
   lastEdited.textContent = generateLastEdited(note.updatedAt);
@@ -29,13 +29,13 @@ noteBody.addEventListener('input', function(e) {
 
 const delBtn = document.querySelector('#remove-note');
 
-delBtn.addEventListener('click', function() {
+delBtn.addEventListener('click', () => {
   removeNote(noteId);
   saveNotesToLocalStorage(notes);
   location.assign('index.html');
 });
 
-window.addEventListener('storage', function(e) {
+window.addEventListener('storage', e => {
   if (e.key === 'notes') {
     notes = JSON.parse(e.newValue);
     note = notes.find(note => note.id === noteId);
