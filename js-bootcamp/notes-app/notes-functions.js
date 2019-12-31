@@ -30,7 +30,7 @@ const generateNote = function(note) {
   //setup remove note btn
   delBtn.textContent = 'x';
   noteContainer.appendChild(delBtn);
-  delBtn.addEventListener('click', function() {
+  delBtn.addEventListener('click', () => {
     removeNote(note.id);
     saveNotesToLocalStorage(notes);
     renderNotes(notes, filters);
@@ -76,9 +76,7 @@ const renderNotes = function(notes, filters) {
 
   container.innerHTML = '';
 
-  filteredNotes.forEach(note => {
-    container.appendChild(generateNote(note));
-  });
+  filteredNotes.forEach(note => container.appendChild(generateNote(note)));
 };
 
 // updates edited date
